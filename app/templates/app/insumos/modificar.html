@@ -1,0 +1,45 @@
+{% extends 'app/base.html' %}
+{% block title %}insumos{% endblock %}
+{% load static %}
+
+{% block js %}
+<script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.2/dist/jquery.validate.min.js"></script>
+
+<script src="{% static 'app/js/traducciones.js' %}"></script>
+<script src="{% static 'app/js/form_jquery.js' %}"></script>
+
+{% endblock %}
+
+{% block contenido %}
+{% load crispy_forms_tags %}
+
+
+<div class="row">
+    <div class="col-12 col-md-6 offset-md-3">
+
+        <div class="card">
+            <div class="card-body">
+
+                <h1 class="title">Modificar insumos</h1>
+
+                <br><br>
+
+                <form action="" method="post" enctype="multipart/form-data">
+                    {% csrf_token %}
+                
+                    {{ form | crispy }}
+                    <br>
+        
+                    <div class="btn-toolbar float-right">
+                        <input type="reset" value="Limpiar" class="btn btn-secondary mr-2">
+                        <input type="submit" value="Modificar" id="guardar" class="btn btn-primary">          
+                    </div>
+                   
+                </form>               
+            </div>
+        </div>
+    </div>
+    
+</div>
+
+{% endblock %}

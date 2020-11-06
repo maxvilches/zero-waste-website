@@ -1,0 +1,25 @@
+{% extends 'app/base.html' %}
+{% block title %}galería{% endblock %}
+{% load static %}
+
+{% block css %}
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+{% endblock %}
+
+{% block js %}
+<script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
+{% endblock %}
+
+{% block contenido %}
+
+<h1 class="title">Galería Carwash</h1>
+
+<div class="galeria">
+    {% for g in gallery %}
+    <a data-fancybox="gallery" href="{{ g.imagen.url }}">
+        <img src="{{ g.imagen.url }}">
+    </a>  
+    {% endfor %}
+</div>
+
+{% endblock %}

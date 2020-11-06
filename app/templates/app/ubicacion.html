@@ -1,0 +1,19 @@
+{% extends 'app/base.html' %}
+{% block title %}ubicación{% endblock %}
+{% load static %}
+
+{% block contenido %}
+
+<h1 class="title">Ubicación casa matriz</h1>
+
+<div class="map">
+    <div>
+        <img src="{% static 'app/img/map.png' %}" alt="">
+    </div>
+    <div class="text">
+        <h2>Región Metropolitana, Puente Alto</h2>
+        <h4>Camilo Enriquez 1213</h4>
+    </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,109 @@
+{% extends 'app/base.html' %}
+{% block title %}inicio{% endblock %}
+
+{% load static %}
+
+{% block css %}
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.css">
+{% endblock %}
+
+{% block js %}
+<script src="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.min.js"></script>
+
+<script>
+    $(document).ready(function(){
+      $('.slider').bxSlider({
+          auto: true
+      });
+    });
+</script>
+{% endblock %}
+
+{% block landing %}
+
+<div class="landing">
+    <h1 class="title-landing">SAN RAMÓN</h1>
+    <h1 class="title-landing">SIN DESPERDICIOS</h1>
+    <img src="{% static 'app/img/landing.svg' %}" alt="">
+    <a href="#servicios" class="navigation-icons">
+        <img src="{% static 'app/img/arrow-down.png' %}" alt="">
+    </a>
+</div>
+
+{% endblock %}
+
+{% block contenido %}
+
+<br><br>
+
+<h1 id="servicios" class="title">Nuestros productos</h1>
+<div class="services">
+    {% for s in servicios %}
+
+    <div class="service">
+        <div class="service-container">
+            {% if s.imagen %}
+            <img src="{{ s.imagen.url }}" alt="">
+            {% endif %}
+            <h4 class="service-title">{{ s.nombre }}</h4>
+            <h6 class="service-text">{{ s.descripcion }}</h6>
+        </div>
+
+    </div>
+    {% endfor %}
+
+</div>
+
+<br><br>
+
+<h1 class="title">NOSOTROS</h1>
+<div class="nosotros">
+    <div>
+        <h2 class="title">Misión</h1>
+        <h5>{{ mision }}</h4>
+        <br><br>
+    </div>
+    <div>
+        <h2 class="title">Visión</h1>
+        <h5>{{ vision }}</h4>
+    </div>
+</div>
+
+
+<h1 id="reseñas" class="title">Reseñas</h1>
+<div class="reviews">
+    <div class="review">
+        <div class="review-container">
+            <h4 class="review-title">"Excelente servicio!"</h4>
+            <h6 class="review-text">Lorem, ipsum dolor sit amet consectetur adipisicing elit. A cum ipsam perferendis iste at tempora architecto iure nemo quo consequuntur. Ipsa iusto sunt eum recusandae a at sint modi fuga.</h6>
+            <img src="{% static 'app/img/avatars/012-woman.svg' %}" alt="">
+        </div>
+    </div>
+
+    <div class="review">
+        <div class="review-container">
+            <h4 class="review-title">"Excelente servicio!"</h4>
+            <h6 class="review-text">Lorem, ipsum dolor sit amet consectetur adipisicing elit. A cum ipsam perferendis iste at tempora architecto iure nemo quo consequuntur. Ipsa iusto sunt eum recusandae a at sint modi fuga.</h6>
+            <img src="{% static 'app/img/avatars/005-man.svg' %}" alt="">
+        </div>
+    </div>
+
+    <div class="review">
+        <div class="review-container">
+            <h4 class="review-title">"Excelente servicio!"</h4>
+            <h6 class="review-text">Lorem, ipsum dolor sit amet consectetur adipisicing elit. A cum ipsam perferendis iste at tempora architecto iure nemo quo consequuntur. Ipsa iusto sunt eum recusandae a at sint modi fuga.</h6>
+            <img src="{% static 'app/img/avatars/008-man.svg' %}" alt="">
+        </div>
+    </div>
+</div>
+
+<br><br>
+
+<h1 class="title">Carwash en acción</h1>
+<div class="slider">
+    {% for s in slider %}
+    <div><img src="{{ s.imagen.url }}" alt="imagen"></div>
+    {% endfor %}
+</div>
+
+{% endblock %}

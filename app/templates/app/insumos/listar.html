@@ -1,0 +1,70 @@
+{% extends 'app/base.html' %}
+
+{% block js %}
+
+<script>
+    function eliminarInsumo(id) {
+        Swal.fire({
+            "title": "¿Estás seguro que deseas eliminar este insumo?",
+            "text": "Esta acción no se puede deshacer",
+            "icon": "warning",
+            "showCancelButton": true,
+            "cancelButtonText": "Cancelar",
+            "confirmButtonText": "Eliminar",
+            "reverseButtons": true,
+            "confirmButtonColor": "#C82333"
+        })
+        .then(function(result) {
+            if(result.isConfirmed) {
+                window.location.href = "/eliminar-insumos/"+id
+            }
+        })
+    }
+</script>
+
+{% endblock %}
+
+{% block contenido %}
+
+<div class="card">
+    <div class="card-body">
+        <h1 class="title">Listado de insumos</h1>
+        <br><br>
+
+        <table class="table table-striped table-hover table-responsive-sm" id="pagtable">
+            <tr>
+                <th>Nombre</th>
+                <th>Precio</th>
+                <th>Stock</th>
+                <th>Descripción</th>
+                <th>Imagen</th>
+                <th>Opciones</th>
+            </tr>
+            {% for i in entity %}
+            <tr>
+                <td> {{ i.nombre }} </td>
+                <td>{{ i.precio }}</td>
+                <td>{{ i.stock }}</td>
+                <td>{{ i.descripcion }}</td>
+                <td>{{ i.imagen }}</td>
+                <td>
+                    {% if perms.app.change_insumos %}
+                    <a class="btn btn-primary btn-sm" href="{% url 'modificar_insumos' i.id %}">Modificar</a>
+                    {% endif %}
+                    {% if perms.app.delete_insumos %}
+                    <a class="btn btn-danger btn-sm" href="#" onclick="eliminarInsumo({{i.id}})">Eliminar</a>
+                    {% endif %}
+                </td>
+            </tr>
+            {% endfor %}
+        
+        </table>
+        
+    </div>
+</div>
+
+<br>
+
+{% include 'app/paginator.html' %}
+
+{% endblock %}
